@@ -63,6 +63,16 @@
                     </googleanalyticsplus_success_set_order>
                 </observers>
             </checkout_multishipping_controller_success_action>
+            <!-- Add to cart event -->
+            <controller_action_predispatch_checkout_cart_add>
+                <observers>
+                    <googleanalyticsplus_checkout_cart_add>
+                        <class>googleanalyticsplus/observer</class>
+                        <method>checkoutCartAdd</method>
+                    </googleanalyticsplus_checkout_cart_add>
+                </observers>
+            </controller_action_predispatch_checkout_cart_add>
+                    
         </events>
     </frontend>
     <default>

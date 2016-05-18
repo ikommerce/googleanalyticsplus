@@ -15,7 +15,9 @@ class Fooman_GoogleAnalyticsPlus_Block_Universal extends Fooman_GoogleAnalyticsP
     const TRACKER_TWO_NAME = 'tracker2';
     CONST URL_ANALYTICS = '//www.google-analytics.com/analytics.js';
     CONST URL_ANALYTICS_DEBUG = '//www.google-analytics.com/analytics_debug.js';
-
+	
+    protected  $_product;
+    
     protected function _construct()
     {
         parent::_construct();
@@ -167,5 +169,15 @@ class Fooman_GoogleAnalyticsPlus_Block_Universal extends Fooman_GoogleAnalyticsP
     {
         return Mage::getStoreConfigFlag('google/analyticsplus_universal/enhanced_link_attribution');
     }
-
+    /**
+     * Get Product add to cart
+     *
+     * @return bool
+     
+    protected function _getProduct()
+    {
+    	$_product = Mage::getModel('core/session')->getData('ProductToShoppingCart');
+    	Mage::getModel('core/session')->setData('ProductToShoppingCart','');
+    	return $this->_product;
+    }*/
 }
