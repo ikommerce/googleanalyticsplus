@@ -170,14 +170,19 @@ class Fooman_GoogleAnalyticsPlus_Block_Universal extends Fooman_GoogleAnalyticsP
         return Mage::getStoreConfigFlag('google/analyticsplus_universal/enhanced_link_attribution');
     }
     /**
-     * Get Product add to cart
-     *
+     * is add to cart tracking enabled
      * @return bool
-     
-    protected function _getProduct()
+     */
+    public function isAddtoCartEnabled()
     {
-    	$_product = Mage::getModel('core/session')->getData('ProductToShoppingCart');
-    	Mage::getModel('core/session')->setData('ProductToShoppingCart','');
-    	return $this->_product;
-    }*/
+    	return Mage::getStoreConfigFlag('google/analyticsplus_addevent/add_to_cart_enable');
+    }
+    /**
+     * is add to Newsletter tracking enabled
+     * @return bool
+     */
+    public function isAddtoNewsletterEnabled()
+    {
+    	return Mage::getStoreConfigFlag('google/analyticsplus_addevent/add_to_newsletter_enable');
+    }
 }

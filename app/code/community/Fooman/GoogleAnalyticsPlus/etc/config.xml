@@ -103,6 +103,10 @@
             <analyticsplus_universal>
                 <debug>0</debug>
             </analyticsplus_universal>
+            <analyticsplus_addevent>
+            	<add_to_cart_enable>0</add_to_cart_enable>
+            	<add_to_newsletter_enable>0</add_to_newsletter_enable>
+            </analyticsplus_addevent>
         </google>
     </default>
     <phpunit>

@@ -36,23 +36,25 @@
             ga('<?php echo Fooman_GoogleAnalyticsPlus_Block_Universal::TRACKER_TWO_NAME?>.send', 'pageview', '<?php echo $this->getPageName(); ?>');
         <?php endif;?>
 
-        <?php $_product = Mage::helper('googleanalyticsplus')->getProductAddedToCart();?>
-        <?php if ($_product): ?>
-         ga('require', 'ec');
-         ga('ec:addProduct', {
-          'id': '<?php echo $_product->getId();?>',
-          'name': '<?php echo $_product->getName();?>',
-          'category': '<?php echo $_product->getData("category_name");?>',
-           //'brand': product.brand,
-           //'variant': product.variant,
-          'price': <?php echo $_product->getData("price");?>,
-          'quantity': <?php echo $_product->getData("qty");?>
-         });
-         ga('ec:setAction', 'add');
-         ga('send', 'event', 'UX', 'click', 'add to cart');
-        <?php endif; ?>
+        <?php if($this->isAddtoCartEnabled()):?>
+	        <?php $_product = Mage::helper('googleanalyticsplus')->getProductAddedToCart();?>
+	        <?php if ($_product): ?>
+	         ga('require', 'ec');
+	         ga('ec:addProduct', {
+	          'id': '<?php echo $_product->getId();?>',
+	          'name': '<?php echo $_product->getName();?>',
+	          'category': '<?php echo $_product->getData("category_name");?>',
+	           //'brand': product.brand,
+	           //'variant': product.variant,
+	          'price': <?php echo $_product->getData("price");?>,
+	          'quantity': <?php echo $_product->getData("qty");?>
+	         });
+	         ga('ec:setAction', 'add');
+	         ga('send', 'event', 'UX', 'click', 'add to cart');
+	        <?php endif; ?>
+	    <?php endif; ?>
 
-        <?php if (Mage::helper('googleanalyticsplus')->getAddedToNewsletter()): ?>
+        <?php if ($this->isAddtoNewsletterEnabled() && Mage::helper('googleanalyticsplus')->getAddedToNewsletter()): ?>
          ga('send', 'event', 'Newsletter', 'Subscription');
         <?php endif; ?>
     </script>
