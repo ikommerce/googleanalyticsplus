@@ -48,7 +48,7 @@ class Fooman_GoogleAnalyticsPlus_Model_Observer
 
 	   	Mage::getModel('core/session')->setProductToShoppingCart(
 	   		new Varien_Object(array(
-	   			'id' => $product->getId(),
+	   			'id' => $product->getSku(),
 	   			'qty' => Mage::app()->getRequest()->getParam('qty', 1),
 	   			'name' => $product->getName(),
 	   			'price' => $price,
