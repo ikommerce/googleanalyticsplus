@@ -63,7 +63,6 @@
                     </googleanalyticsplus_success_set_order>
                 </observers>
             </checkout_multishipping_controller_success_action>
-            <!-- Add to cart event -->
             <controller_action_predispatch_checkout_cart_add>
                 <observers>
                     <googleanalyticsplus_checkout_cart_add>
@@ -72,7 +71,14 @@
                     </googleanalyticsplus_checkout_cart_add>
                 </observers>
             </controller_action_predispatch_checkout_cart_add>
-                    
+            <newsletter_subscriber_save_after>
+                <observers>
+                    <googleanalyticsplus_newsletter_add>
+                         <class>googleanalyticsplus/observer</class>
+                         <method>addToNewsletter</method>
+                    </googleanalyticsplus_newsletter_add>
+                </observers>
+            </newsletter_subscriber_save_after>
         </events>
     </frontend>
     <default>

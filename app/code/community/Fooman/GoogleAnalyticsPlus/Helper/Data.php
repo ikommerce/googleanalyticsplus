@@ -79,4 +79,32 @@ class Fooman_GoogleAnalyticsPlus_Helper_Data extends Mage_Core_Helper_Abstract
         }
     }
 
+    /**
+     * retrieve product added to cart from session and remove it.
+     *
+     * @return product if product was added to cart, otherwise null.
+     */
+    public function getProductAddedToCart()
+    {
+    	$product = Mage::getModel('core/session')->getProductToShoppingCart();
+    	if ($product && $product->getId()) {
+    		Mage::getModel('core/session')->unsProductToShoppingCart();
+    		return $product;
+    	} else {
+    		return null;
+    	}
+    }
+
+    /**
+     * @return boolean true if user was added to newsletter, false otherwise.
+     */
+    public function getAddedToNewsletter()
+    {
+    	if (Mage::getModel('core/session')->getAddedToNewsletter()) {
+    		Mage::getModel('core/session')->unsAddedToNewsletter();
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
 }

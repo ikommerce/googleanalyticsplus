@@ -45,10 +45,4 @@
                    template="fooman/googleanalyticsplus/ga-conversion.phtml"/>
         </reference>
     </checkout_multishipping_success>
-    <checkout_cart_index>
-        <reference name="before_body_end">
-            <block type="googleanalyticsplus/universal" name="googleanalyticsplus_event_checkout_cart_index" 
-            	   template="fooman/googleanalyticsplus/ga-addtocart.phtml" />
-        </reference>
-    </checkout_cart_index>
-</layout>
+    </layout>
