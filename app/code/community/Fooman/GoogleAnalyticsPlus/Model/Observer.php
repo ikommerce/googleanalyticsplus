@@ -29,7 +29,8 @@ class Fooman_GoogleAnalyticsPlus_Model_Observer
 
 	   	$category_name = '';
 	   	$categories = $product->getCategoryIds();
-
+    
+        $brand = $product->getAttributeText('manufacturer');
 	   	if (count($categories)) {
 			$count = 0;
 	   		foreach ($categories as $k => $firstCategoryId):
@@ -53,6 +54,7 @@ class Fooman_GoogleAnalyticsPlus_Model_Observer
 	   			'name' => $product->getName(),
 	   			'price' => $price,
 	   			'category_name' => $category_name,
+	   			'brand_name' => $brand,
 	   		))
 	   );
    	}
