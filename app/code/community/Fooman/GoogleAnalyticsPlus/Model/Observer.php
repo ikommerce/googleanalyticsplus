@@ -29,8 +29,8 @@ class Fooman_GoogleAnalyticsPlus_Model_Observer
 
 	   	$category_name = '';
 	   	$categories = $product->getCategoryIds();
-    
-        $brand = $product->getAttributeText('manufacturer');
+    	
+
 	   	if (count($categories)) {
 			$count = 0;
 	   		foreach ($categories as $k => $firstCategoryId):
@@ -46,7 +46,21 @@ class Fooman_GoogleAnalyticsPlus_Model_Observer
 	   		$price = $product->getPrice();
 	   	}
 	   	$price = number_format($price,2,".","");
-
+		
+		
+	   	
+		$brandCode = Mage::getStoreConfig('google/analyticsplus_addevent/attr_id');
+				
+		$attr = Mage::getResourceModel('catalog/eav_attribute')
+						->loadByCode('catalog_product',$brandCode);
+		
+		if ($attr->getId()) {
+			$brand = $product->getAttributeText($brandCode);
+		}else{
+			$brand = $product->getAttributeText('manufacturer');
+		}
+		
+		
 	   	Mage::getModel('core/session')->setProductToShoppingCart(
 	   		new Varien_Object(array(
 	   			'id' => $product->getSku(),
