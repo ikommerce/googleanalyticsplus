@@ -91,11 +91,16 @@
 
 
         <?php foreach ($order->getAllVisibleItems() as $item):?>
-
+        <?php 
+        $_sku = $item->getSku();
+        $_product = Mage::getModel('catalog/product')->loadByAttribute('sku',$_sku);
+        $_manufacturerName = $_product->getAttributeText('brand');
+        ?>
             <?php $itemDetails = "{
                 'id': '".$this->jsQuoteEscape($order->getIncrementId()) ."',
                 'name': '". $this->jsQuoteEscape($item->getName()) ."',
                 'sku': '". $this->jsQuoteEscape($item->getSku()) ."',
+        		'brand': '". $this->jsQuoteEscape($_manufacturerName) ."',
                 'price': '". Mage::helper('googleanalyticsplus')->convert($item, 'price', $order->getOrderCurrencyCode()) ."',
                 'quantity': '". (int)$item->getQtyOrdered() ."',
                 'category': '". $this->jsQuoteEscape($this->getCategory($item)) ."'
